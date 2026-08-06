@@ -29,7 +29,7 @@ const aboutCards = [
     id: 'experience',
     title: 'Experience',
     icon: Briefcase,
-    subtitle: '4+ Years Engineering Excellence',
+    subtitle: '2+ Years Engineering Excellence',
     color: 'from-[#8A2BE2] to-purple-600',
     borderColor: 'border-[#8A2BE2]/40',
     content: (
@@ -171,9 +171,8 @@ export const AboutSection: React.FC = () => {
                 transition={{ duration: 0.7, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
                 onMouseEnter={() => setHoveredCard(card.id)}
                 onMouseLeave={() => setHoveredCard(null)}
-                className={`group relative glass-card p-6 sm:p-8 rounded-3xl border ${card.borderColor} transition-all duration-500 cursor-pointer overflow-hidden transform-gpu ${
-                  isHovered ? 'scale-[1.02] -translate-y-2 border-[#00D9FF]/60 shadow-[0_15px_40px_rgba(0,217,255,0.2)]' : 'shadow-2xl'
-                }`}
+                className={`group relative glass-card p-6 sm:p-8 rounded-3xl border ${card.borderColor} transition-all duration-500 cursor-pointer overflow-hidden transform-gpu ${isHovered ? 'scale-[1.02] -translate-y-2 border-[#00D9FF]/60 shadow-[0_15px_40px_rgba(0,217,255,0.2)]' : 'shadow-2xl'
+                  }`}
                 style={{
                   transformStyle: 'preserve-3d',
                 }}

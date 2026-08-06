@@ -47,20 +47,7 @@ const timelineEvents = [
     badge: 'EARLY CAREER',
     color: '#FF007F',
   },
-  {
-    year: '2017 - 2021',
-    role: 'B.Tech in Computer Science',
-    company: 'University of Technology',
-    location: 'Mumbai, IN',
-    description: 'Graduated with First Class Honors in CS Engineering. Specialized in Web Development, Software Engineering, and Computer Graphics.',
-    achievements: [
-      'President of Computer Science Coding Society',
-      '1st Place Winner in National Hackathon 2020',
-    ],
-    side: 'right',
-    badge: 'EDUCATION',
-    color: '#00FF88',
-  },
+
 ];
 
 export const ExperienceSection: React.FC = () => {
@@ -138,9 +125,8 @@ export const ExperienceSection: React.FC = () => {
                     whileInView={{ opacity: 1, x: 0, scale: 1 }}
                     viewport={{ once: true, margin: '-40px' }}
                     transition={{ duration: 0.7, delay: index * 0.15 }}
-                    className={`w-full md:w-1/2 pl-12 md:pl-0 ${
-                      isLeft ? 'md:pr-12 md:text-right' : 'md:pl-12 md:ml-auto'
-                    }`}
+                    className={`w-full md:w-1/2 pl-12 md:pl-0 ${isLeft ? 'md:pr-12 md:text-right' : 'md:pl-12 md:ml-auto'
+                      }`}
                   >
                     <div className="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800 hover:border-[#00D9FF]/40 space-y-4">
                       {/* Year & Badge */}
