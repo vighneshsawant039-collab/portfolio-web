@@ -31,7 +31,7 @@ export const Footer: React.FC = () => {
 
         {/* Copyright */}
         <div className="flex flex-col items-center md:items-end space-y-1 font-mono text-slate-400">
-          <p>© {new Date().getFullYear()} Vighnesh Sawant. All rights reserved.</p>
+          <p>© 2024 - 2026 Vighnesh Sawant. All rights reserved.</p>
           <p className="flex items-center gap-1 text-[11px]">
             Designed with <Heart className="w-3 h-3 text-[#FF007F] fill-current" /> using React, Three.js & Tailwind
           </p>

@@ -145,7 +145,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
             {/* Modal Actions */}
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-800">
               <span className="text-xs font-mono text-slate-400">
-                📄 Format: PDF | Size: 1.4 MB | Updated: 2026
+                📄 Format: PDF | Size: 1.4 MB | Updated: 2024 - 2026
               </span>
               <div className="flex items-center space-x-3 w-full sm:w-auto">
                 <button
@@ -158,7 +158,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                   href="#download"
                   onClick={(e) => {
                     e.preventDefault();
-                    alert('Simulated PDF Download: Vighnesh_Sawant_Resume_2026.pdf generated!');
+                    alert('Simulated PDF Download: Vighnesh_Sawant_Resume_2024_2026.pdf generated!');
                   }}
                   className="px-6 py-2.5 rounded-full text-xs font-heading font-bold text-black bg-gradient-to-r from-[#00D9FF] to-[#8A2BE2] hover:opacity-90 transition-all shadow-[0_0_20px_rgba(0,217,255,0.4)] flex items-center justify-center gap-2 w-1/2 sm:w-auto"
                 >

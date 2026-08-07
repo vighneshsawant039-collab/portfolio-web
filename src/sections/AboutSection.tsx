@@ -36,15 +36,15 @@ const aboutCards = [
       <div className="space-y-3 text-sm text-slate-300">
         <div className="border-l-2 border-[#8A2BE2] pl-3 py-1 space-y-1">
           <div className="flex justify-between items-center">
-            <h4 className="font-semibold text-white">Full Stack 3D Developer</h4>
-            <span className="text-xs font-mono text-[#8A2BE2]">2023 - Present</span>
+            <h4 className="font-semibold text-white">Full Stack Developer</h4>
+            <span className="text-xs font-mono text-[#8A2BE2]">2024 - 2026</span>
           </div>
-          <p className="text-xs text-slate-400">Led 3D WebGL initiatives, component libraries, & cloud microservices.</p>
+          <p className="text-xs text-slate-400">Led WebGL initiatives, component libraries, & cloud microservices.</p>
         </div>
         <div className="border-l-2 border-slate-700 pl-3 py-1 space-y-1">
           <div className="flex justify-between items-center">
             <h4 className="font-semibold text-white">Frontend React Developer</h4>
-            <span className="text-xs font-mono text-slate-400">2021 - 2023</span>
+            <span className="text-xs font-mono text-slate-400">2024 - 2026</span>
           </div>
           <p className="text-xs text-slate-400">Crafted scalable SaaS dashboards, state management, & real-time analytics.</p>
         </div>
