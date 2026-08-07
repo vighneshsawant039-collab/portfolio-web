@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Cpu, Sparkles, Layers, Database, Code } from 'lucide-react';
+import { Cpu, Sparkles, Layers, Database } from 'lucide-react';
 import { SkillsCanvas } from '../components/3d/SkillsCanvas';
 
 const skillCategories = [
