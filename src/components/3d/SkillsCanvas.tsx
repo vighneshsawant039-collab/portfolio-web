@@ -4,14 +4,13 @@ import { Float, Text, Sparkles, PerspectiveCamera, OrbitControls } from '@react-
 import * as THREE from 'three';
 
 const skillsList = [
-  { name: 'React', color: '#00D9FF', pos: [-3, 1.2, 0] },
-  { name: 'Node.js', color: '#00FF88', pos: [-1, 1.5, 1] },
-  { name: 'MongoDB', color: '#47A248', pos: [1, 1.2, 0] },
-  { name: 'Express', color: '#8A2BE2', pos: [3, 1.5, -1] },
-  { name: 'JavaScript', color: '#F7DF1E', pos: [-2.5, -1.2, 0.5] },
-  { name: 'Python', color: '#3776AB', pos: [-0.5, -1.5, -0.5] },
-  { name: 'TypeScript', color: '#3178C6', pos: [1.5, -1.2, 0.5] },
-  { name: 'Three.js', color: '#FF007F', pos: [3.2, -1.2, 0] },
+  { name: 'React JS', color: '#00D9FF', pos: [-3, 1.2, 0] },
+  { name: 'Frontend', color: '#8A2BE2', pos: [-1, 1.5, 1] },
+  { name: 'Backend', color: '#FF007F', pos: [1, 1.2, 0] },
+  { name: 'MongoDB', color: '#47A248', pos: [3, 1.5, -1] },
+  { name: 'REST APIs', color: '#00FF88', pos: [-2, -1.2, 0.5] },
+  { name: 'Tailwind CSS', color: '#38BDF8', pos: [0, -1.5, -0.5] },
+  { name: 'HTML', color: '#E34F26', pos: [2, -1.2, 0.5] },
 ];
 
 function SkillCube({ skill, onHover }: { skill: (typeof skillsList)[0]; onHover: (name: string | null) => void }) {

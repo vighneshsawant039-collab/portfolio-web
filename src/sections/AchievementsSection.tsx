@@ -5,7 +5,7 @@ import { Award, Code2, Rocket, ShieldCheck, Flame } from 'lucide-react';
 const stats = [
   {
     id: 'projects',
-    value: '20+',
+    value: '0',
     label: 'Production Projects',
     subtext: 'Built & Deployed',
     icon: Rocket,
@@ -13,7 +13,7 @@ const stats = [
   },
   {
     id: 'experience',
-    value: '4+',
+    value: '1',
     label: 'Years Experience',
     subtext: 'Full Stack & 3D Web',
     icon: Code2,
@@ -21,7 +21,7 @@ const stats = [
   },
   {
     id: 'commits',
-    value: '1,500+',
+    value: '7',
     label: 'Git Commits',
     subtext: 'Clean Production Code',
     icon: Flame,
@@ -29,7 +29,7 @@ const stats = [
   },
   {
     id: 'uptime',
-    value: '99.9%',
+    value: '07%',
     label: 'App Reliability',
     subtext: 'High Performance SLA',
     icon: ShieldCheck,

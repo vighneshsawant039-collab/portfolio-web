@@ -4,8 +4,8 @@ import { Briefcase, MapPin, CheckCircle2 } from 'lucide-react';
 
 const timelineEvents = [
   {
-    year: '2023 - Present',
-    role: 'Senior Full Stack & 3D Web Architect',
+    year: '2024 - 2026',
+    role: 'Junior Full Stack Developer',
     company: 'TechNova Cyber Systems',
     location: 'Mumbai, IN',
     description: 'Leading frontend architecture, 3D WebGL product visualizers, microservices integration, and mentoring high-performing engineering teams.',
@@ -19,7 +19,7 @@ const timelineEvents = [
     color: '#00D9FF',
   },
   {
-    year: '2021 - 2023',
+    year: '2024 - 2026',
     role: 'Frontend React Developer',
     company: 'CyberPulse Innovations',
     location: 'Remote',
@@ -34,7 +34,7 @@ const timelineEvents = [
     color: '#8A2BE2',
   },
   {
-    year: '2020 - 2021',
+    year: '2024 - 2026',
     role: 'Full Stack Engineering Intern',
     company: 'Apex Code Studio',
     location: 'Mumbai, IN',

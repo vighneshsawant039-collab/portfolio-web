@@ -37,7 +37,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                 </div>
                 <div>
                   <h3 className="font-heading text-2xl font-bold text-white">Vighnesh Sawant</h3>
-                  <p className="text-xs font-mono text-[#00D9FF]">Full Stack & 3D Web Architect — Resume</p>
+                  <p className="text-xs font-mono text-[#00D9FF]">Junior Full Stack Developer — Resume</p>
                 </div>
               </div>
               <button
@@ -58,7 +58,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                     Executive Summary
                   </h4>
                   <p className="text-slate-300 leading-relaxed text-xs sm:text-sm">
-                    Passionate Full Stack Developer with 4+ years of expertise crafting ultra-responsive web applications, 3D interactive graphics, microservices, and scalable React architectures. Recognized for high-performance frontend engineering and luxury UI design standards.
+                    Passionate Full Stack Developer with 1+ years of expertise crafting ultra-responsive web applications, 3D interactive graphics, microservices, and scalable React architectures. Recognized for high-performance frontend engineering and luxury UI design standards.
                   </p>
                 </div>
 
@@ -71,8 +71,8 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                   <div className="space-y-3">
                     <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
                       <div className="flex justify-between text-xs font-semibold text-white">
-                        <span>Senior Full Stack Developer — TechNova Solutions</span>
-                        <span className="text-[#00D9FF] font-mono">2023 - Present</span>
+                        <span>Junior Full Stack Developer — TechNova Solutions</span>
+                        <span className="text-[#00D9FF] font-mono">2024 - 2026</span>
                       </div>
                       <p className="text-xs text-slate-400 mt-1">
                         Architected 3D product visualizers with WebGL & React Three Fiber, boosting user engagement by 140%.
@@ -82,7 +82,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                     <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
                       <div className="flex justify-between text-xs font-semibold text-white">
                         <span>Frontend Engineer — CyberPulse Labs</span>
-                        <span className="text-[#00D9FF] font-mono">2021 - 2023</span>
+                        <span className="text-[#00D9FF] font-mono">2024 - 2026</span>
                       </div>
                       <p className="text-xs text-slate-400 mt-1">
                         Engineered state-of-the-art SaaS dashboards using React, TypeScript, and Node.js REST API microservices.
@@ -113,7 +113,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                     Core Technical Skills
                   </h5>
                   <div className="flex flex-wrap gap-1.5">
-                    {['React.js', 'Three.js', 'TypeScript', 'Node.js', 'Express', 'MongoDB', 'Python', 'Tailwind CSS', 'GSAP', 'Docker', 'GraphQL', 'AWS'].map((skill) => (
+                    {['React JS', 'Frontend', 'Backend', 'MongoDB', 'REST APIs', 'Tailwind CSS', 'HTML'].map((skill) => (
                       <span
                         key={skill}
                         className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-[#00D9FF]/10 text-[#00D9FF] border border-[#00D9FF]/20"

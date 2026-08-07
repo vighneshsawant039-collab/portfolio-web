@@ -5,36 +5,24 @@ import { SkillsCanvas } from '../components/3d/SkillsCanvas';
 
 const skillCategories = [
   {
-    category: 'Frontend & 3D Web',
+    category: 'Frontend Technologies',
     icon: Layers,
     color: '#00D9FF',
     skills: [
-      { name: 'React.js / Next.js', level: 95 },
-      { name: 'Three.js / WebGL / R3F', level: 90 },
-      { name: 'TypeScript / JavaScript', level: 92 },
-      { name: 'Tailwind CSS / Framer Motion', level: 95 },
+      { name: 'React JS', level: 92 },
+      { name: 'Frontend', level: 95 },
+      { name: 'Tailwind CSS', level: 90 },
+      { name: 'HTML', level: 95 },
     ],
   },
   {
-    category: 'Backend & Microservices',
-    icon: Code,
+    category: 'Backend & Database',
+    icon: Database,
     color: '#8A2BE2',
     skills: [
-      { name: 'Node.js / Express', level: 90 },
-      { name: 'Python / Fast API', level: 85 },
-      { name: 'REST APIs & GraphQL', level: 88 },
-      { name: 'System Design & Auth', level: 86 },
-    ],
-  },
-  {
-    category: 'Database & Cloud',
-    icon: Database,
-    color: '#FF007F',
-    skills: [
-      { name: 'MongoDB / Mongoose', level: 90 },
-      { name: 'PostgreSQL / Prisma', level: 84 },
-      { name: 'Redis Caching', level: 82 },
-      { name: 'AWS / Docker / Vercel', level: 80 },
+      { name: 'Backend', level: 88 },
+      { name: 'MongoDB', level: 85 },
+      { name: 'REST APIs', level: 90 },
     ],
   },
 ];
@@ -106,7 +94,7 @@ export const SkillsSection: React.FC = () => {
         </div>
 
         {/* Tech Stack Proficiency Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {skillCategories.map((cat, idx) => {
             const Icon = cat.icon;
             return (
