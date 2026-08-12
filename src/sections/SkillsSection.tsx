@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Cpu, Sparkles, Layers, Database } from 'lucide-react';
-import { SkillsCanvas } from '../components/3d/SkillsCanvas';
+import { Cpu, Sparkles, Layers, Database, Code, Globe, Shield, Terminal, Zap } from 'lucide-react';
 
 const skillCategories = [
   {
@@ -9,10 +8,10 @@ const skillCategories = [
     icon: Layers,
     color: '#00D9FF',
     skills: [
-      { name: 'React JS', level: 92 },
-      { name: 'Frontend', level: 95 },
-      { name: 'Tailwind CSS', level: 90 },
-      { name: 'HTML', level: 95 },
+      { name: 'React JS', level: 92, icon: Code, desc: 'Component Architecture & State' },
+      { name: 'Frontend Engineering', level: 95, icon: Globe, desc: 'Responsive Layouts & Motion' },
+      { name: 'Tailwind CSS', level: 90, icon: Zap, desc: 'Modern Styling System' },
+      { name: 'HTML5 & Canvas', level: 95, icon: Terminal, desc: 'Semantic Structures & Graphics' },
     ],
   },
   {
@@ -20,9 +19,9 @@ const skillCategories = [
     icon: Database,
     color: '#8A2BE2',
     skills: [
-      { name: 'Backend', level: 88 },
-      { name: 'MongoDB', level: 85 },
-      { name: 'REST APIs', level: 90 },
+      { name: 'Backend Node.js', level: 88, icon: Terminal, desc: 'Express Microservices & Logic' },
+      { name: 'MongoDB', level: 85, icon: Database, desc: 'NoSQL Schemas & Aggregations' },
+      { name: 'REST APIs', level: 90, icon: Shield, desc: 'Secure Auth & Telemetry' },
     ],
   },
 ];
@@ -56,7 +55,7 @@ export const SkillsSection: React.FC = () => {
             transition={{ delay: 0.1 }}
             className="font-heading text-4xl sm:text-5xl font-extrabold text-white"
           >
-            Floating 3D <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D9FF] via-[#8A2BE2] to-[#FF007F]">Skill Cubes</span>
+            Core Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D9FF] via-[#8A2BE2] to-[#FF007F]">Skill Stack</span>
           </motion.h2>
 
           <motion.p
@@ -66,12 +65,12 @@ export const SkillsSection: React.FC = () => {
             transition={{ delay: 0.2 }}
             className="max-w-xl text-sm sm:text-base text-slate-400"
           >
-            Hover and rotate floating 3D cubes to inspect my primary tech stack in real-time.
+            Explore my core competencies in frontend web engineering, backend architecture, and interactive web motion.
           </motion.p>
         </div>
 
         {/* Active Hover Banner */}
-        <div className="h-10 flex items-center justify-center mb-4">
+        <div className="h-10 flex items-center justify-center mb-6">
           {activeSkill ? (
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -79,24 +78,19 @@ export const SkillsSection: React.FC = () => {
               className="px-6 py-2 rounded-full bg-gradient-to-r from-[#00D9FF]/20 to-[#8A2BE2]/20 border border-[#00D9FF]/50 text-sm font-mono text-white flex items-center gap-2 shadow-[0_0_20px_rgba(0,217,255,0.4)]"
             >
               <Sparkles className="w-4 h-4 text-[#00D9FF] animate-spin" />
-              <span>ACTIVE MODEL: <strong className="text-[#00D9FF]">{activeSkill}</strong></span>
+              <span>SELECTED TECH: <strong className="text-[#00D9FF]">{activeSkill}</strong></span>
             </motion.div>
           ) : (
             <span className="text-xs font-mono text-slate-500 tracking-widest uppercase">
-              // INTERACT WITH 3D CUBES ABOVE //
+              // HOVER OVER SKILL MODULES BELOW //
             </span>
           )}
-        </div>
-
-        {/* 3D R3F Skills Scene */}
-        <div className="w-full mb-16 rounded-3xl glass-panel p-4 border border-[#00D9FF]/20 shadow-[0_0_40px_rgba(0,0,0,0.8)]">
-          <SkillsCanvas onHoverSkill={(name) => setActiveSkill(name)} />
         </div>
 
         {/* Tech Stack Proficiency Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {skillCategories.map((cat, idx) => {
-            const Icon = cat.icon;
+            const CategoryIcon = cat.icon;
             return (
               <motion.div
                 key={cat.category}
@@ -104,37 +98,53 @@ export const SkillsSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.15 }}
-                className="glass-card p-6 rounded-3xl border border-slate-800 hover:border-[#00D9FF]/40"
+                className="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800 hover:border-[#00D9FF]/40 transition-colors shadow-xl"
               >
                 <div className="flex items-center space-x-3 mb-6">
                   <div className="p-3 rounded-xl bg-slate-900 border border-slate-700" style={{ color: cat.color }}>
-                    <Icon className="w-5 h-5" />
+                    <CategoryIcon className="w-5 h-5" />
                   </div>
                   <h3 className="font-heading font-bold text-lg text-white">{cat.category}</h3>
                 </div>
 
-                <div className="space-y-4">
-                  {cat.skills.map((skill) => (
-                    <div key={skill.name} className="space-y-1.5">
-                      <div className="flex justify-between text-xs font-mono">
-                        <span className="text-slate-200">{skill.name}</span>
-                        <span className="text-slate-400">{skill.level}%</span>
+                <div className="space-y-5">
+                  {cat.skills.map((skill) => {
+                    const SkillIcon = skill.icon;
+                    return (
+                      <div
+                        key={skill.name}
+                        onMouseEnter={() => setActiveSkill(skill.name)}
+                        onMouseLeave={() => setActiveSkill(null)}
+                        className="group p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800/80 hover:border-[#00D9FF]/50 transition-all duration-300 cursor-pointer space-y-2"
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center space-x-2.5">
+                            <SkillIcon className="w-4 h-4 text-[#00D9FF] group-hover:scale-110 transition-transform" />
+                            <span className="text-sm font-semibold text-slate-200 group-hover:text-white transition-colors">
+                              {skill.name}
+                            </span>
+                          </div>
+                          <span className="text-xs font-mono text-[#00D9FF]">{skill.level}%</span>
+                        </div>
+
+                        <p className="text-[11px] text-slate-400 font-mono">{skill.desc}</p>
+
+                        <div className="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden border border-slate-800">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            whileInView={{ width: `${skill.level}%` }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1, delay: 0.2 }}
+                            className="h-full rounded-full"
+                            style={{
+                              background: `linear-gradient(90deg, ${cat.color}, #8A2BE2)`,
+                              boxShadow: `0 0 8px ${cat.color}`,
+                            }}
+                          />
+                        </div>
                       </div>
-                      <div className="w-full h-2 bg-slate-900 rounded-full overflow-hidden border border-slate-800">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1, delay: 0.2 }}
-                          className="h-full rounded-full"
-                          style={{
-                            background: `linear-gradient(90deg, ${cat.color}, #8A2BE2)`,
-                            boxShadow: `0 0 10px ${cat.color}`,
-                          }}
-                        />
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </motion.div>
             );

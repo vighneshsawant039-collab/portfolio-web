@@ -26,15 +26,15 @@ const projectsData: Project[] = [
   },
   {
     id: 'portfolio-web',
-    title: '3D Interactive Cyber Portfolio',
-    category: '3D & WebGL',
-    tagline: 'High-Performance 3D Developer Portfolio & Interactive Showcase',
-    description: 'Ultra-modern 3D portfolio featuring immersive canvas renders, glassmorphism design system, smooth scroll transitions, and custom WebGL shaders.',
-    longDescription: 'Built to demonstrate cutting-edge frontend and 3D web engineering, this portfolio features Three.js 3D particles, Framer Motion animations, TypeScript architecture, and dark cyber aesthetic.',
+    title: 'Interactive Cyber Portfolio',
+    category: 'Full Stack & UI',
+    tagline: 'High-Performance Developer Portfolio & Interactive Showcase',
+    description: 'Ultra-modern portfolio featuring interactive canvas visuals, glassmorphism design system, smooth scroll transitions, and GSAP animations.',
+    longDescription: 'Built to demonstrate cutting-edge frontend web engineering, this portfolio features GSAP ScrollTrigger animations, Framer Motion transitions, clean JavaScript architecture, and dark cyber aesthetic.',
     image: '/projects/portfolio-web.png',
-    tags: ['React', 'Three.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vite'],
+    tags: ['React', 'GSAP', 'JavaScript', 'Tailwind CSS', 'Framer Motion', 'Vite'],
     features: [
-      'Interactive 3D particle canvas & procedural shaders',
+      'Interactive GSAP ScrollTrigger animation sequence',
       'Glassmorphism futuristic UI design system',
       'Responsive mobile-first layout & smooth animations',
       'Integrated case study modals & project showcase',
@@ -64,7 +64,7 @@ const projectsData: Project[] = [
   },
 ];
 
-const categories = ['All', 'Full Stack', '3D & WebGL'];
+const categories = ['All', 'Full Stack', 'UI & Animations'];
 
 export const ProjectsSection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -100,7 +100,7 @@ export const ProjectsSection: React.FC = () => {
             transition={{ delay: 0.1 }}
             className="font-heading text-4xl sm:text-5xl font-extrabold text-white"
           >
-            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D9FF] to-[#8A2BE2]">3D & Web Projects</span>
+            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D9FF] to-[#8A2BE2]">Web & Interactive Projects</span>
           </motion.h2>
 
           <motion.p
@@ -110,7 +110,7 @@ export const ProjectsSection: React.FC = () => {
             transition={{ delay: 0.2 }}
             className="max-w-2xl text-sm sm:text-base text-slate-400"
           >
-            Explore a selection of high-impact applications combining frontend elegance, 3D graphics, and robust full-stack architecture.
+            Explore a selection of high-impact applications combining frontend elegance, GSAP animations, and robust full-stack architecture.
           </motion.p>
         </div>
 

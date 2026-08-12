@@ -16,7 +16,7 @@ const aboutCards = [
           I am <strong className="text-white font-semibold">Vighnesh Sawant</strong>, a passionate Full Stack & Frontend Developer based in Mumbai, India. I specialize in bridging the gap between engineering rigor and futuristic visual design.
         </p>
         <p className="leading-relaxed">
-          With extensive mastery in <span className="text-[#00D9FF] font-mono">React, Three.js, and TypeScript</span>, I construct hyper-interactive 3D web applications, microservices, and immersive design systems that wow users worldwide.
+          With extensive mastery in <span className="text-[#00D9FF] font-mono">React, JavaScript, and GSAP</span>, I construct hyper-interactive web applications, microservices, and immersive design systems that wow users worldwide.
         </p>
         <div className="flex items-center space-x-2 pt-2 text-xs font-mono text-emerald-400">
           <ShieldCheck className="w-4 h-4 text-emerald-400" />
@@ -39,7 +39,7 @@ const aboutCards = [
             <h4 className="font-semibold text-white">Full Stack Developer</h4>
             <span className="text-xs font-mono text-[#8A2BE2]">2024 - 2026</span>
           </div>
-          <p className="text-xs text-slate-400">Led WebGL initiatives, component libraries, & cloud microservices.</p>
+          <p className="text-xs text-slate-400">Led frontend initiatives, UI component libraries, & cloud microservices.</p>
         </div>
         <div className="border-l-2 border-slate-700 pl-3 py-1 space-y-1">
           <div className="flex justify-between items-center">
@@ -55,22 +55,22 @@ const aboutCards = [
     id: 'education',
     title: 'Education',
     icon: GraduationCap,
-    subtitle: 'Computer Science Foundation',
+    subtitle: 'Computer Engineering Foundation',
     color: 'from-[#FF007F] to-pink-600',
     borderColor: 'border-[#FF007F]/40',
     content: (
       <div className="space-y-3 text-sm text-slate-300">
         <div className="space-y-2">
           <div className="flex justify-between items-center">
-            <h4 className="font-semibold text-white">B.Tech in Computer Science</h4>
-            <span className="text-xs font-mono text-[#FF007F]">Honors Graduate</span>
+            <h4 className="font-semibold text-white">Diploma in Computer Engineering</h4>
+            <span className="text-xs font-mono text-[#FF007F]">Diploma Graduate</span>
           </div>
           <p className="text-xs text-slate-400">
-            Focused on Data Structures, Algorithms, Software Engineering, and Computer Graphics.
+            Focused on Data Structures, Algorithms, Web Development, and Software Engineering.
           </p>
         </div>
         <div className="pt-2 flex flex-wrap gap-2">
-          {['Algorithms', '3D Graphics', 'System Design', 'Web Architecture'].map((tag) => (
+          {['Algorithms', 'Web Development', 'System Design', 'Software Engineering'].map((tag) => (
             <span key={tag} className="px-2 py-0.5 rounded text-[11px] font-mono bg-pink-500/10 text-pink-300 border border-pink-500/20">
               {tag}
             </span>
@@ -152,7 +152,7 @@ export const AboutSection: React.FC = () => {
             transition={{ delay: 0.2 }}
             className="max-w-2xl text-sm sm:text-base text-slate-400"
           >
-            Combining full-stack software architecture with cutting-edge 3D interactive graphics to produce memorable web platforms.
+            Combining full-stack software architecture with cutting-edge GSAP animations to produce memorable web platforms.
           </motion.p>
         </div>
 

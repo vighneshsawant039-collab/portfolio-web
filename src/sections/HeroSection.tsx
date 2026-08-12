@@ -21,8 +21,15 @@ const SocialGithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+const SocialLinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" {...props}>
+    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.74a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24z" />
+  </svg>
+);
+
 const socialLinks = [
   { name: 'GitHub', href: 'https://github.com/vighneshsawant039-collab', icon: SocialGithubIcon },
+  { name: 'LinkedIn', href: 'https://linkedin.com', icon: SocialLinkedinIcon },
   { name: 'Email', href: 'mailto:vighneshsawant039@gmail.com', icon: Mail },
 ];
 
@@ -35,8 +42,9 @@ export const HeroSection: React.FC = () => {
 
   const containerRef = useRef<HTMLDivElement>(null);
   const heroPinRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const videoWrapperRef = useRef<HTMLDivElement>(null);
+  const gridWrapperRef = useRef<HTMLDivElement>(null);
+  const ring1Ref = useRef<HTMLDivElement>(null);
+  const ring2Ref = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const socialRef = useRef<HTMLDivElement>(null);
@@ -76,16 +84,7 @@ export const HeroSection: React.FC = () => {
     });
   };
 
-  // Ensure Video plays immediately on mount
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {
-        if (videoRef.current) videoRef.current.muted = true;
-      });
-    }
-  }, []);
-
-  // GSAP ScrollTrigger Pinning & Video Zoom Exit Animation
+  // GSAP ScrollTrigger Pinning & Kinetic Geometry Scrub Animation
   useEffect(() => {
     const pinCtx = gsap.context(() => {
       if (!containerRef.current || !heroPinRef.current) return;
@@ -94,7 +93,7 @@ export const HeroSection: React.FC = () => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: 'top top',
-          end: '+=220vh',
+          end: '+=200vh',
           pin: heroPinRef.current,
           pinSpacing: true,
           scrub: 0.8,
@@ -102,31 +101,62 @@ export const HeroSection: React.FC = () => {
         },
       });
 
-      // 1. Slowly scale the video from 100% to 112% (cinematic camera zoom)
-      if (videoWrapperRef.current) {
+      // 1. Kinetic Neon Rings expansion & 3D rotation scrub
+      if (ring1Ref.current) {
         timeline.to(
-          videoWrapperRef.current,
+          ring1Ref.current,
           {
-            scale: 1.12,
+            scale: 2.2,
+            rotation: 180,
+            opacity: 0.8,
+            borderColor: '#00D9FF',
             ease: 'none',
           },
           0
         );
       }
 
-      // 2. Dynamic overlay opacity during scroll transition
+      if (ring2Ref.current) {
+        timeline.to(
+          ring2Ref.current,
+          {
+            scale: 1.8,
+            rotation: -270,
+            opacity: 0.6,
+            borderColor: '#8A2BE2',
+            ease: 'none',
+          },
+          0
+        );
+      }
+
+      // 2. Matrix Perspective Grid transform
+      if (gridWrapperRef.current) {
+        timeline.to(
+          gridWrapperRef.current,
+          {
+            scale: 1.5,
+            rotationX: 45,
+            opacity: 0.3,
+            ease: 'none',
+          },
+          0
+        );
+      }
+
+      // 3. Dynamic overlay background opacity transition
       if (overlayRef.current) {
         timeline.to(
           overlayRef.current,
           {
-            backgroundColor: 'rgba(5, 5, 5, 0.75)',
+            backgroundColor: 'rgba(5, 5, 5, 0.85)',
             ease: 'none',
           },
           0
         );
       }
 
-      // 3. Move hero content upward while fading opacity from 1 to 0 with exit blur
+      // 4. Hero Content elevation & blur exit transition
       if (contentRef.current) {
         timeline.to(
           contentRef.current,
@@ -140,7 +170,7 @@ export const HeroSection: React.FC = () => {
         );
       }
 
-      // 4. Fade out vertical social icons
+      // 5. Fade out vertical social icons
       if (socialRef.current) {
         timeline.to(
           socialRef.current,
@@ -177,38 +207,53 @@ export const HeroSection: React.FC = () => {
         {/* LAYER 1: Dark Base Background */}
         <div className="absolute inset-0 bg-[#050505] z-0" />
 
-        {/* LAYER 2: Visible Cinematic Video Background */}
-        <div
-          ref={videoWrapperRef}
-          className="absolute inset-0 z-[1] overflow-hidden transform-gpu will-change-transform"
-        >
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            className="w-full h-full object-cover opacity-95"
-          >
-            <source src="/hero-video.mp4" type="video/mp4" />
-          </video>
+        {/* LAYER 2: Interactive GSAP ScrollTrigger Kinetic Geometry & Grid Background */}
+        <div className="absolute inset-0 z-[1] flex items-center justify-center overflow-hidden pointer-events-none">
+          {/* Cyber Perspective Grid */}
+          <div
+            ref={gridWrapperRef}
+            className="absolute inset-0 opacity-40 transition-transform duration-700 ease-out"
+            style={{
+              backgroundImage: `linear-gradient(to right, rgba(0, 217, 255, 0.08) 1px, transparent 1px),
+                                linear-gradient(to bottom, rgba(0, 217, 255, 0.08) 1px, transparent 1px)`,
+              backgroundSize: '60px 60px',
+              transform: `perspective(800px) rotateX(60deg) scale(1.2) translate3d(${(mousePos.x - 0.5) * -20}px, ${(mousePos.y - 0.5) * -20}px, 0)`,
+            }}
+          />
+
+          {/* Kinetic Neon Geometry Ring 1 */}
+          <div
+            ref={ring1Ref}
+            className="absolute w-[450px] h-[450px] rounded-full border border-[#00D9FF]/30 shadow-[0_0_60px_rgba(0,217,255,0.15)] pointer-events-none transform-gpu transition-all duration-300"
+            style={{
+              transform: `translate3d(${(mousePos.x - 0.5) * 25}px, ${(mousePos.y - 0.5) * 25}px, 0)`,
+            }}
+          />
+
+          {/* Kinetic Neon Geometry Ring 2 */}
+          <div
+            ref={ring2Ref}
+            className="absolute w-[650px] h-[650px] rounded-full border border-dashed border-[#8A2BE2]/30 shadow-[0_0_80px_rgba(138,43,226,0.15)] pointer-events-none transform-gpu transition-all duration-300"
+            style={{
+              transform: `translate3d(${(mousePos.x - 0.5) * -30}px, ${(mousePos.y - 0.5) * -30}px, 0)`,
+            }}
+          />
         </div>
 
-        {/* LAYER 3: Dark Overlay (rgba(0,0,0,0.35)) for maximum video visibility & text readability */}
+        {/* LAYER 3: Dark Overlay */}
         <div
           ref={overlayRef}
-          className="absolute inset-0 z-[2] bg-black/35 backdrop-brightness-[0.9] transition-colors duration-300 pointer-events-none"
+          className="absolute inset-0 z-[2] bg-black/40 backdrop-brightness-[0.9] transition-colors duration-300 pointer-events-none"
         />
 
-        {/* LAYER 4: Subtle Animated Particles, Light Streaks & Floating Dust */}
+        {/* LAYER 4: Animated Particles & Dust */}
         <HeroParticles mousePos={mousePos} />
 
         {/* Ambient Glow Orbs */}
         <div className="absolute top-1/4 left-10 w-96 h-96 bg-[#00D9FF]/15 rounded-full blur-[150px] pointer-events-none z-[3] animate-pulse-slow" />
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#8A2BE2]/15 rounded-full blur-[150px] pointer-events-none z-[3] animate-pulse-slow" />
 
-        {/* VERTICALLY ALIGNED SOCIAL ICONS (LEFT MARGIN) - GitHub & Email only */}
+        {/* VERTICALLY ALIGNED SOCIAL ICONS (LEFT MARGIN) */}
         <div
           ref={socialRef}
           className="hidden md:flex fixed left-8 top-1/2 -translate-y-1/2 z-20 flex-col items-center space-y-5"
@@ -296,7 +341,7 @@ export const HeroSection: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="max-w-2xl text-sm sm:text-base md:text-lg text-slate-300 font-sans leading-relaxed mb-8 text-center drop-shadow-md"
           >
-            Crafting high-performance web applications, interactive 3D visual experiences, and scalable frontends with clean architectural craftsmanship.
+            Crafting high-performance web applications, dynamic GSAP scroll animations, and scalable frontends with clean architectural craftsmanship.
           </motion.p>
 
           {/* Tech Badges */}
@@ -308,7 +353,7 @@ export const HeroSection: React.FC = () => {
           >
             {[
               { label: 'React / Next.js', icon: Code },
-              { label: 'WebGL / Three.js', icon: Layers },
+              { label: 'GSAP Animations', icon: Layers },
               { label: 'Full Stack Node', icon: Terminal },
             ].map((item) => {
               const Icon = item.icon;
@@ -324,7 +369,7 @@ export const HeroSection: React.FC = () => {
             })}
           </motion.div>
 
-          {/* CTA Buttons with Spring Animation */}
+          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 35 }}
             animate={{ opacity: 1, y: 0 }}
@@ -354,7 +399,7 @@ export const HeroSection: React.FC = () => {
             </button>
           </motion.div>
 
-          {/* Animated Scroll Indicator with "VIGHNESH SAWANT" prominently displayed beside it */}
+          {/* Animated Scroll Indicator */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

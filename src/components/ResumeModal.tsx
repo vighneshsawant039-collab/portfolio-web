@@ -58,7 +58,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                     Executive Summary
                   </h4>
                   <p className="text-slate-300 leading-relaxed text-xs sm:text-sm">
-                    Passionate Full Stack Developer with 1+ years of expertise crafting ultra-responsive web applications, 3D interactive graphics, microservices, and scalable React architectures. Recognized for high-performance frontend engineering and luxury UI design standards.
+                    Passionate Full Stack Developer with 1+ years of expertise crafting ultra-responsive web applications, GSAP interactive animations, microservices, and scalable React architectures. Recognized for high-performance frontend engineering and luxury UI design standards.
                   </p>
                 </div>
 
@@ -75,7 +75,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                         <span className="text-[#00D9FF] font-mono">2024 - 2026</span>
                       </div>
                       <p className="text-xs text-slate-400 mt-1">
-                        Architected 3D product visualizers with WebGL & React Three Fiber, boosting user engagement by 140%.
+                        Architected interactive web components with React & GSAP, boosting user engagement by 140%.
                       </p>
                     </div>
 
@@ -85,7 +85,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                         <span className="text-[#00D9FF] font-mono">2024 - 2026</span>
                       </div>
                       <p className="text-xs text-slate-400 mt-1">
-                        Engineered state-of-the-art SaaS dashboards using React, TypeScript, and Node.js REST API microservices.
+                        Engineered state-of-the-art SaaS dashboards using React, JavaScript, and Node.js REST API microservices.
                       </p>
                     </div>
                   </div>
@@ -99,7 +99,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                   </h4>
                   <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
                     <div className="flex justify-between text-xs font-semibold text-white">
-                      <span>B.Tech in Computer Science & Engineering</span>
+                      <span>Diploma in Computer Engineering</span>
                       <span className="text-emerald-400 font-mono">GPA 3.9 / 4.0</span>
                     </div>
                   </div>
@@ -135,7 +135,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                     </li>
                     <li className="flex items-center gap-2">
                       <Award className="w-3.5 h-3.5 text-[#8A2BE2]" />
-                      Three.js Journey Master Class
+                      GSAP Animation Mastery
                     </li>
                   </ul>
                 </div>
