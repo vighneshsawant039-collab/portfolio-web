@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Cpu, Sparkles, Layers, Database, Code, Globe, Shield, Terminal, Zap } from 'lucide-react';
-import { MovingSkillCubes } from '../components/MovingSkillCubes';
+import { SkillsCanvas } from '../components/3d/SkillsCanvas';
 
 const skillCategories = [
   {
@@ -66,7 +66,7 @@ export const SkillsSection: React.FC = () => {
             transition={{ delay: 0.2 }}
             className="max-w-xl text-sm sm:text-base text-slate-400"
           >
-            Hover and rotate floating 3D cubes to inspect my primary tech stack in real-time.
+            Hover and rotate floating 3D WebGL cubes to inspect my primary tech stack in real-time.
           </motion.p>
         </div>
 
@@ -88,9 +88,9 @@ export const SkillsSection: React.FC = () => {
           )}
         </div>
 
-        {/* 3D Moving Skill Cubes Visualizer Container */}
-        <div className="w-full mb-12">
-          <MovingSkillCubes onHoverSkill={(name) => setActiveSkill(name)} />
+        {/* 3D WebGL R3F Skills Scene Container */}
+        <div className="w-full mb-12 rounded-3xl glass-panel p-4 border border-[#00D9FF]/30 shadow-[0_0_50px_rgba(0,0,0,0.9)] overflow-hidden">
+          <SkillsCanvas onHoverSkill={(name) => setActiveSkill(name)} />
         </div>
 
         {/* Tech Stack Proficiency Grid */}
