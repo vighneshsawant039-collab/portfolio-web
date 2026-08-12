@@ -42,9 +42,8 @@ export const HeroSection: React.FC = () => {
 
   const containerRef = useRef<HTMLDivElement>(null);
   const heroPinRef = useRef<HTMLDivElement>(null);
-  const gridWrapperRef = useRef<HTMLDivElement>(null);
-  const ring1Ref = useRef<HTMLDivElement>(null);
-  const ring2Ref = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoWrapperRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const socialRef = useRef<HTMLDivElement>(null);
@@ -84,107 +83,103 @@ export const HeroSection: React.FC = () => {
     });
   };
 
-  // GSAP ScrollTrigger Pinning & Kinetic Geometry Scrub Animation
+  // GSAP ScrollTrigger Video Frame Scrubbing Animation
   useEffect(() => {
-    const pinCtx = gsap.context(() => {
-      if (!containerRef.current || !heroPinRef.current) return;
+    const video = videoRef.current;
+    if (!video) return;
 
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top top',
-          end: '+=200vh',
-          pin: heroPinRef.current,
-          pinSpacing: true,
-          scrub: 0.8,
-          invalidateOnRefresh: true,
-        },
-      });
+    const setupScrollVideo = () => {
+      // Pause video playback so frames advance strictly on scroll scrub
+      video.pause();
 
-      // 1. Kinetic Neon Rings expansion & 3D rotation scrub
-      if (ring1Ref.current) {
-        timeline.to(
-          ring1Ref.current,
-          {
-            scale: 2.2,
-            rotation: 180,
-            opacity: 0.8,
-            borderColor: '#00D9FF',
-            ease: 'none',
+      const pinCtx = gsap.context(() => {
+        if (!containerRef.current || !heroPinRef.current) return;
+
+        const timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top top',
+            end: '+=250vh',
+            pin: heroPinRef.current,
+            pinSpacing: true,
+            scrub: 0.5, // Smooth video frame scrubbing on scroll
+            invalidateOnRefresh: true,
           },
-          0
-        );
-      }
+        });
 
-      if (ring2Ref.current) {
-        timeline.to(
-          ring2Ref.current,
-          {
-            scale: 1.8,
-            rotation: -270,
-            opacity: 0.6,
-            borderColor: '#8A2BE2',
-            ease: 'none',
-          },
-          0
-        );
-      }
+        // 1. Scrub video currentTime smoothly as user scrolls
+        if (video.duration) {
+          timeline.to(
+            video,
+            {
+              currentTime: video.duration,
+              ease: 'none',
+            },
+            0
+          );
+        }
 
-      // 2. Matrix Perspective Grid transform
-      if (gridWrapperRef.current) {
-        timeline.to(
-          gridWrapperRef.current,
-          {
-            scale: 1.5,
-            rotationX: 45,
-            opacity: 0.3,
-            ease: 'none',
-          },
-          0
-        );
-      }
+        // 2. Cinematic subtle zoom on background video
+        if (videoWrapperRef.current) {
+          timeline.to(
+            videoWrapperRef.current,
+            {
+              scale: 1.15,
+              ease: 'none',
+            },
+            0
+          );
+        }
 
-      // 3. Dynamic overlay background opacity transition
-      if (overlayRef.current) {
-        timeline.to(
-          overlayRef.current,
-          {
-            backgroundColor: 'rgba(5, 5, 5, 0.85)',
-            ease: 'none',
-          },
-          0
-        );
-      }
+        // 3. Dynamic overlay darkening transition
+        if (overlayRef.current) {
+          timeline.to(
+            overlayRef.current,
+            {
+              backgroundColor: 'rgba(5, 5, 5, 0.85)',
+              ease: 'none',
+            },
+            0
+          );
+        }
 
-      // 4. Hero Content elevation & blur exit transition
-      if (contentRef.current) {
-        timeline.to(
-          contentRef.current,
-          {
-            y: -140,
-            opacity: 0,
-            filter: 'blur(10px)',
-            ease: 'power2.inOut',
-          },
-          0
-        );
-      }
+        // 4. Move hero text content upward while fading with exit blur
+        if (contentRef.current) {
+          timeline.to(
+            contentRef.current,
+            {
+              y: -150,
+              opacity: 0,
+              filter: 'blur(12px)',
+              ease: 'power2.inOut',
+            },
+            0
+          );
+        }
 
-      // 5. Fade out vertical social icons
-      if (socialRef.current) {
-        timeline.to(
-          socialRef.current,
-          {
-            opacity: 0,
-            x: -30,
-            ease: 'power2.inOut',
-          },
-          0
-        );
-      }
-    }, containerRef);
+        // 5. Fade out vertical social links
+        if (socialRef.current) {
+          timeline.to(
+            socialRef.current,
+            {
+              opacity: 0,
+              x: -30,
+              ease: 'power2.inOut',
+            },
+            0
+          );
+        }
+      }, containerRef);
 
-    return () => pinCtx.revert();
+      return () => pinCtx.revert();
+    };
+
+    if (video.readyState >= 1) {
+      setupScrollVideo();
+    } else {
+      video.addEventListener('loadedmetadata', setupScrollVideo);
+      return () => video.removeEventListener('loadedmetadata', setupScrollVideo);
+    }
   }, []);
 
   const scrollToSection = (id: string) => {
@@ -207,43 +202,25 @@ export const HeroSection: React.FC = () => {
         {/* LAYER 1: Dark Base Background */}
         <div className="absolute inset-0 bg-[#050505] z-0" />
 
-        {/* LAYER 2: Interactive GSAP ScrollTrigger Kinetic Geometry & Grid Background */}
-        <div className="absolute inset-0 z-[1] flex items-center justify-center overflow-hidden pointer-events-none">
-          {/* Cyber Perspective Grid */}
-          <div
-            ref={gridWrapperRef}
-            className="absolute inset-0 opacity-40 transition-transform duration-700 ease-out"
-            style={{
-              backgroundImage: `linear-gradient(to right, rgba(0, 217, 255, 0.08) 1px, transparent 1px),
-                                linear-gradient(to bottom, rgba(0, 217, 255, 0.08) 1px, transparent 1px)`,
-              backgroundSize: '60px 60px',
-              transform: `perspective(800px) rotateX(60deg) scale(1.2) translate3d(${(mousePos.x - 0.5) * -20}px, ${(mousePos.y - 0.5) * -20}px, 0)`,
-            }}
-          />
-
-          {/* Kinetic Neon Geometry Ring 1 */}
-          <div
-            ref={ring1Ref}
-            className="absolute w-[450px] h-[450px] rounded-full border border-[#00D9FF]/30 shadow-[0_0_60px_rgba(0,217,255,0.15)] pointer-events-none transform-gpu transition-all duration-300"
-            style={{
-              transform: `translate3d(${(mousePos.x - 0.5) * 25}px, ${(mousePos.y - 0.5) * 25}px, 0)`,
-            }}
-          />
-
-          {/* Kinetic Neon Geometry Ring 2 */}
-          <div
-            ref={ring2Ref}
-            className="absolute w-[650px] h-[650px] rounded-full border border-dashed border-[#8A2BE2]/30 shadow-[0_0_80px_rgba(138,43,226,0.15)] pointer-events-none transform-gpu transition-all duration-300"
-            style={{
-              transform: `translate3d(${(mousePos.x - 0.5) * -30}px, ${(mousePos.y - 0.5) * -30}px, 0)`,
-            }}
+        {/* LAYER 2: Video Background Scrubbed via GSAP ScrollTrigger */}
+        <div
+          ref={videoWrapperRef}
+          className="absolute inset-0 z-[1] overflow-hidden transform-gpu will-change-transform pointer-events-none"
+        >
+          <video
+            ref={videoRef}
+            src="/hero-video.mp4"
+            muted
+            playsInline
+            preload="auto"
+            className="w-full h-full object-cover opacity-90"
           />
         </div>
 
         {/* LAYER 3: Dark Overlay */}
         <div
           ref={overlayRef}
-          className="absolute inset-0 z-[2] bg-black/40 backdrop-brightness-[0.9] transition-colors duration-300 pointer-events-none"
+          className="absolute inset-0 z-[2] bg-black/40 backdrop-brightness-[0.85] transition-colors duration-300 pointer-events-none"
         />
 
         {/* LAYER 4: Animated Particles & Dust */}
@@ -280,7 +257,7 @@ export const HeroSection: React.FC = () => {
           <div className="w-[1px] h-12 bg-gradient-to-t from-transparent to-[#00D9FF]/50" />
         </div>
 
-        {/* LAYER 5 (TOP): HERO CONTENT */}
+        {/* LAYER 5 (TOP): HERO CONTENT IN FRONT OF VIDEO FRAMES */}
         <div
           ref={contentRef}
           style={{
