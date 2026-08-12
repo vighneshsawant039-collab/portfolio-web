@@ -83,7 +83,7 @@ export const HeroSection: React.FC = () => {
     });
   };
 
-  // GSAP ScrollTrigger Video Frame Scrubbing Animation
+  // GSAP ScrollTrigger Ultra-Smooth Video Frame Scrubbing
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -95,6 +95,8 @@ export const HeroSection: React.FC = () => {
       const pinCtx = gsap.context(() => {
         if (!containerRef.current || !heroPinRef.current) return;
 
+        const duration = video.duration || 1;
+
         const timeline = gsap.timeline({
           scrollTrigger: {
             trigger: containerRef.current,
@@ -102,36 +104,34 @@ export const HeroSection: React.FC = () => {
             end: '+=250vh',
             pin: heroPinRef.current,
             pinSpacing: true,
-            scrub: 0.5, // Smooth video frame scrubbing on scroll
+            scrub: 1.2, // 1.2s smooth physics inertia scrub
             invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              // Smoothly tween video currentTime to eliminate frame decoding stutter
+              const targetTime = self.progress * duration;
+              gsap.to(video, {
+                currentTime: targetTime,
+                duration: 0.15,
+                ease: 'power1.out',
+                overwrite: 'auto',
+              });
+            },
           },
         });
 
-        // 1. Scrub video currentTime smoothly as user scrolls
-        if (video.duration) {
-          timeline.to(
-            video,
-            {
-              currentTime: video.duration,
-              ease: 'none',
-            },
-            0
-          );
-        }
-
-        // 2. Cinematic subtle zoom on background video
+        // 1. Cinematic subtle zoom on background video container
         if (videoWrapperRef.current) {
           timeline.to(
             videoWrapperRef.current,
             {
-              scale: 1.15,
+              scale: 1.18,
               ease: 'none',
             },
             0
           );
         }
 
-        // 3. Dynamic overlay darkening transition
+        // 2. Dynamic overlay darkening transition
         if (overlayRef.current) {
           timeline.to(
             overlayRef.current,
@@ -143,7 +143,7 @@ export const HeroSection: React.FC = () => {
           );
         }
 
-        // 4. Move hero text content upward while fading with exit blur
+        // 3. Move hero text content upward while fading with exit blur
         if (contentRef.current) {
           timeline.to(
             contentRef.current,
@@ -157,7 +157,7 @@ export const HeroSection: React.FC = () => {
           );
         }
 
-        // 5. Fade out vertical social links
+        // 4. Fade out vertical social links
         if (socialRef.current) {
           timeline.to(
             socialRef.current,

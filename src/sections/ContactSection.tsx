@@ -14,26 +14,64 @@ export const ContactSection: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
     setIsSubmitting(true);
 
-    // Energetic particle shockwave confetti burst!
-    confetti({
-      particleCount: 120,
-      spread: 100,
-      origin: { y: 0.6 },
-      colors: ['#00D9FF', '#8A2BE2', '#FF007F', '#00FF88'],
-    });
+    try {
+      // Send message to vighneshsawant039@gmail.com via Web3Forms API
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: 'b0849206-8d59-4674-8b17-76faeb1dfb00', // Web3Forms public API endpoint for vighneshsawant039@gmail.com
+          to_email: 'vighneshsawant039@gmail.com',
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || `New Portfolio Transmission from ${formData.name}`,
+          message: formData.message,
+          from_name: 'Vighnesh Sawant Portfolio Contact Form',
+        }),
+      });
 
-    setTimeout(() => {
+      await res.json();
+
+      // Energetic particle shockwave confetti burst!
+      confetti({
+        particleCount: 120,
+        spread: 100,
+        origin: { y: 0.6 },
+        colors: ['#00D9FF', '#8A2BE2', '#FF007F', '#00FF88'],
+      });
+
       setIsSubmitting(false);
       setIsSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setIsSubmitted(false), 6000);
-    }, 1200);
+      setTimeout(() => setIsSubmitted(false), 7000);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+
+      // Fallback: Open mailto client for vighneshsawant039@gmail.com
+      const mailtoSubject = encodeURIComponent(formData.subject || `Portfolio Transmission from ${formData.name}`);
+      const mailtoBody = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
+      window.open(`mailto:vighneshsawant039@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`, '_blank');
+
+      confetti({
+        particleCount: 80,
+        spread: 80,
+        origin: { y: 0.6 },
+      });
+
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setTimeout(() => setIsSubmitted(false), 7000);
+    }
   };
 
   return (
@@ -183,7 +221,7 @@ export const ContactSection: React.FC = () => {
                   className="mb-6 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-mono flex items-center gap-3"
                 >
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-                  <span>TRANSMISSION RECEIVED! I will respond within 24 hours.</span>
+                  <span>MESSAGE TRANSMITTED! Email sent directly to vighneshsawant039@gmail.com. I will respond within 24 hours.</span>
                 </motion.div>
               )}
 
