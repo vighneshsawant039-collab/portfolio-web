@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Cpu, Sparkles, Layers, Database, Code, Globe, Shield, Terminal, Zap } from 'lucide-react';
+import { MovingSkillCubes } from '../components/MovingSkillCubes';
 
 const skillCategories = [
   {
@@ -55,7 +56,7 @@ export const SkillsSection: React.FC = () => {
             transition={{ delay: 0.1 }}
             className="font-heading text-4xl sm:text-5xl font-extrabold text-white"
           >
-            Core Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D9FF] via-[#8A2BE2] to-[#FF007F]">Skill Stack</span>
+            Floating 3D <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D9FF] via-[#8A2BE2] to-[#FF007F]">Skill Cubes</span>
           </motion.h2>
 
           <motion.p
@@ -65,7 +66,7 @@ export const SkillsSection: React.FC = () => {
             transition={{ delay: 0.2 }}
             className="max-w-xl text-sm sm:text-base text-slate-400"
           >
-            Explore my core competencies in frontend web engineering, backend architecture, and interactive web motion.
+            Hover and rotate floating 3D cubes to inspect my primary tech stack in real-time.
           </motion.p>
         </div>
 
@@ -78,13 +79,18 @@ export const SkillsSection: React.FC = () => {
               className="px-6 py-2 rounded-full bg-gradient-to-r from-[#00D9FF]/20 to-[#8A2BE2]/20 border border-[#00D9FF]/50 text-sm font-mono text-white flex items-center gap-2 shadow-[0_0_20px_rgba(0,217,255,0.4)]"
             >
               <Sparkles className="w-4 h-4 text-[#00D9FF] animate-spin" />
-              <span>SELECTED TECH: <strong className="text-[#00D9FF]">{activeSkill}</strong></span>
+              <span>ACTIVE MODEL: <strong className="text-[#00D9FF]">{activeSkill}</strong></span>
             </motion.div>
           ) : (
             <span className="text-xs font-mono text-slate-500 tracking-widest uppercase">
-              // HOVER OVER SKILL MODULES BELOW //
+              // INTERACT WITH 3D CUBES BELOW //
             </span>
           )}
+        </div>
+
+        {/* 3D Moving Skill Cubes Visualizer Container */}
+        <div className="w-full mb-12">
+          <MovingSkillCubes onHoverSkill={(name) => setActiveSkill(name)} />
         </div>
 
         {/* Tech Stack Proficiency Grid */}
